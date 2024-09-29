@@ -26,7 +26,9 @@ public class Remark {
      */
     public Remark(String remark) {
         requireNonNull(remark);
-        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
+        if (!remark.isEmpty()) { // workaround because the regex is failing for ""
+            checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
+        }
         value = remark;
     }
 
